@@ -184,7 +184,6 @@ def main():
     siete =     [df_type[11].iloc[2] * 60, df_type[18].iloc[2] * 60, df_type[19].iloc[2] * 60, df_type[20].iloc[2] * 60, df_type[27].iloc[2] * 60, df_type[29].iloc[2] * 60, df_type[31].iloc[2] * 60]
     tys =       [df_type[3].iloc[2] * 60, df_type[9].iloc[2] * 60]
 
-
     cuatro = np.round(cuatro,2)
     seis = np.round(seis,2)
     siete = np.round(siete,2)
