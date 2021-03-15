@@ -176,40 +176,95 @@ def main():
     c=df_type[11].iloc[2]
     d=df_type[3].iloc[2]
 
-    barWidth = 0.25
-    fig = plt.subplots(figsize =(12, 8))
+    barWidth = 0.5
+    fig, ax = plt.subplots(figsize =(12, 8))
 
-    cuatro =[df_type[0].iloc[2],df_type[1].iloc[2],df_type[2].iloc[2],df_type[4].iloc[2],df_type[5].iloc[2],df_type[6].iloc[2],df_type[7].iloc[2],df_type[8].iloc[2],df_type[14].iloc[2],df_type[17].iloc[2],df_type[22].iloc[2],df_type[24].iloc[2],df_type[25].iloc[2],df_type[28].iloc[2],df_type[34].iloc[2]]
-    seis = [df_type[15].iloc[2],df_type[10].iloc[2],df_type[12].iloc[2],df_type[15].iloc[2],df_type[16].iloc[2],df_type[23].iloc[2],df_type[26].iloc[2],df_type[33].iloc[2]]
-    siete = [df_type[11].iloc[2],df_type[18].iloc[2],df_type[19].iloc[2],df_type[20].iloc[2],df_type[27].iloc[2],df_type[29].iloc[2],df_type[31].iloc[2]]
-    tys = [df_type[3].iloc[2],df_type[9].iloc[2]]
+    cuatro =    [df_type[0].iloc[2] * 60, df_type[1].iloc[2] * 60, df_type[2].iloc[2] * 60, df_type[4].iloc[2] * 60, df_type[5].iloc[2] * 60, df_type[6].iloc[2] * 60, df_type[7].iloc[2] * 60, df_type[8].iloc[2] * 60, df_type[14].iloc[2] * 60, df_type[17].iloc[2] * 60, df_type[22].iloc[2] * 60, df_type[24].iloc[2] * 60, df_type[25].iloc[2] * 60, df_type[28].iloc[2] * 60, df_type[34].iloc[2] * 60]
+    seis =      [df_type[15].iloc[2] * 60, df_type[10].iloc[2] * 60, df_type[12].iloc[2] * 60, df_type[15].iloc[2] * 60, df_type[16].iloc[2] * 60, df_type[23].iloc[2] * 60, df_type[26].iloc[2] * 60, df_type[33].iloc[2] * 60]
+    siete =     [df_type[11].iloc[2] * 60, df_type[18].iloc[2] * 60, df_type[19].iloc[2] * 60, df_type[20].iloc[2] * 60, df_type[27].iloc[2] * 60, df_type[29].iloc[2] * 60, df_type[31].iloc[2] * 60]
+    tys =       [df_type[3].iloc[2] * 60, df_type[9].iloc[2] * 60]
+
+    # cuatro = [ '%.2f' % elem1 for elem1 in cuatro ]
+    #
+    # seis = [ '%.2f' % elem2 for elem2 in seis ]
+    # siete = [ '%.2f' % elem3 for elem3 in siete ]
+    # tys = [ '%.2f' % elem4 for elem4 in tys ]
+
+    # cuatro = list(map(round,cuatro))
+    #
+    # seis = list(map(round,seis))
+    # siete = list(map(round,siete))
+    # tys = list(map(round,tys))
+
+    cuatro = np.round(cuatro,2)
+    seis = np.round(seis,2)
+    siete = np.round(siete,2)
+    tys = np.round(tys,2)
 
     br1 = np.arange(len(cuatro))
     br1 = br1 + 1
-    a = len(cuatro)
-    b = len(seis)
+
     br2 = np.arange(len(cuatro),len(cuatro)+len(seis))
     br3 = np.arange(len(cuatro)+len(seis),len(cuatro)+len(seis)+len(siete))
     br4 = np.arange(len(cuatro)+len(seis)+len(siete),len(cuatro)+len(seis)+len(siete)+len(tys))
+    width = 0.35
 
-    plt.bar(br1,cuatro, color = 'r', label='Heat meters')
-    plt.bar(br2,seis, color = 'b', label='Warm water meter')
-    plt.bar(br3,siete,color='y', label='Water meter')
-    plt.bar(br4,tys,color='g',label='Radio converter')
-    plt.legend(labels=['Heat meters', 'Warm water meter','Water meter','Radio converter'])
-
-    plt.ylabel('Mean duty cycle (min)')
+    plt.ylabel('Mean duty cycle (s)')
     plt.xlabel('Meters')
     plt.title('Mean interval period')
-    plt.rcParams['legend.loc'] = 'center left'
+    plt.rcParams['legend.loc'] = 'upper left'
     plt.rcParams['legend.fancybox'] = True
     plt.rcParams['legend.fontsize'] = 'large'
     plt.rcParams['legend.framealpha'] = None
     plt.rcParams['legend.edgecolor'] = 'inherit'
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
-    
 
+    # pps = ax.bar(br1 - width/2, cuatro, width, label='population')
+
+    pps = plt.bar(br1-width/2,cuatro, color = 'r', label='Heat meters')
+    for p in pps:
+       height = p.get_height()
+       ax.annotate('{}'.format(height),
+          xy=(p.get_x() + p.get_width() / 2, height),
+          xytext=(0, 3), # 3 points vertical offset
+          textcoords="offset points",
+          ha='center', va='bottom')
+
+    pps2=plt.bar(br2-width/2,seis, color = 'b', label='Warm water meter')
+    for p in pps2:
+       height = p.get_height()
+       ax.annotate('{}'.format(height),
+          xy=(p.get_x() + p.get_width() / 2, height),
+          xytext=(0, 3), # 3 points vertical offset
+          textcoords="offset points",
+          ha='center', va='bottom')
+
+    pps3=plt.bar(br3,siete,color='y', label='Water meter')
+    for p in pps3:
+       height = p.get_height()
+       ax.annotate('{}'.format(height),
+          xy=(p.get_x() + p.get_width() / 2, height),
+          xytext=(0, 3), # 3 points vertical offset
+          textcoords="offset points",
+          ha='center', va='bottom')
+
+    pps4=plt.bar(br4,tys,color='g',label='Radio converter')
+    for p in pps4:
+       height = p.get_height()
+       ax.annotate('{}'.format(height),
+          xy=(p.get_x() + p.get_width() / 2, height),
+          xytext=(0, 3), # 3 points vertical offset
+          textcoords="offset points",
+          ha='center', va='bottom')
+
+    plt.legend(labels=['Heat meters', 'Warm water meter','Water meter','Radio converter'])
+
+
+
+    plt.show()
+
+    print("df_wake:",df_wake)
+    print("df_mean:",df_mean)
 if __name__ == "__main__":
     main()
