@@ -84,9 +84,10 @@ def main():
     df_stadv=df_stadv.dropna(axis=1)
     tiempos=df_mean[1:]   #Cool! Keep going!
     stdev=df_stadv[1:]
-    x=range(len(df_scatter[0]))
+    x=np.arange(len(df_scatter[0])) + 1
     flatList = [ item for elem in df_scatter[0] for item in elem]  #To take the values inside the inner lists to ground level of the main list
-    stand0=pd.DataFrame({'x_axis': x, 'y_axis': flatList })
+    a = x +1
+    stand0=pd.DataFrame({'x_axis': a, 'y_axis': flatList })
 
     plt.ylabel('Filtered time interval (min)')
     plt.xlabel('Consecutive ocurrences')
@@ -101,8 +102,11 @@ def main():
         line1.append(.019)
         line2.append(0.013)
         i+=1
-    x1 = range(len(x))
+    x1 = np.arange(len(x)) + 1
+
     x2 = x1
+    print("x1:",len(x1))
+    print("line1:",len(line1))
     error1=pd.DataFrame({'x': x1, 'y': line1})
     error2=pd.DataFrame({'x': x1, 'y': line2})
     plt.plot( 'x', 'y', data=error1, linestyle='-', color='r')
@@ -126,7 +130,7 @@ def main():
         i+=1
 
     x = np.arange(len(df_mean.columns)) #OK
-
+    x = x+1
     fig = plt.figure()
     ax = fig.add_axes([0.07,0.07,.9,.9])
     ax.bar(x,t,
@@ -142,8 +146,8 @@ def main():
     plt.grid(True)
     plt.tight_layout()
     plt.show()
-
-    stand=pd.DataFrame({'x_axis': range(len(s)), 'y_axis': s })
+    x = np.arange(len(s)) + 1
+    stand=pd.DataFrame({'x_axis': x, 'y_axis': s })
 
     plt.ylabel('Variance: \u03C3^2')
     plt.xlabel('Devices')
@@ -181,6 +185,7 @@ def main():
     tys = [df_type[3].iloc[2],df_type[9].iloc[2]]
 
     br1 = np.arange(len(cuatro))
+    br1 = br1 + 1
     a = len(cuatro)
     b = len(seis)
     br2 = np.arange(len(cuatro),len(cuatro)+len(seis))
@@ -204,9 +209,7 @@ def main():
     plt.grid(True)
     plt.tight_layout()
     plt.show()
-
-    print("singles:",singles)
-    print("df_mean:",df_mean)
+    
 
 if __name__ == "__main__":
     main()
