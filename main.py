@@ -89,9 +89,9 @@ def main():
     a = x +1
     stand0=pd.DataFrame({'x_axis': a, 'y_axis': flatList })
 
-    plt.ylabel('Filtered time interval (min)')
-    plt.xlabel('Consecutive ocurrences')
-    plt.title('Time interval distribution for meter No.0 between consecutive reception of messages from the meters')
+    plt.ylabel('Filtered time interval (min)',fontsize=17)
+    plt.xlabel('Consecutive ocurrences',fontsize=17)
+    plt.title('Time interval distribution for meter No.0 between consecutive reception of messages from the meters',fontsize=22)
     plt.grid(True)
     plt.plot( 'x_axis', 'y_axis', data=stand0, linestyle='-', marker='o')
 
@@ -99,14 +99,11 @@ def main():
     line1 = []
     line2 = []
     while i<len(x):
-        line1.append(.019)
-        line2.append(0.013)
+        line1.append(.0185)
+        line2.append(0.0145)
         i+=1
     x1 = np.arange(len(x)) + 1
-
     x2 = x1
-    print("x1:",len(x1))
-    print("line1:",len(line1))
     error1=pd.DataFrame({'x': x1, 'y': line1})
     error2=pd.DataFrame({'x': x1, 'y': line2})
     plt.plot( 'x', 'y', data=error1, linestyle='-', color='r')
@@ -140,18 +137,18 @@ def main():
         ecolor='black',
         capsize=15,
         color=(0.2, 0.4, 0.6, 0.6))
-    plt.ylabel('Mean duty cycle (min)')
-    plt.xlabel('Meters')
-    plt.title('Mean interval period with standard deviation for every meter')
+    plt.ylabel('Mean duty cycle (min)', fontsize=17)
+    plt.xlabel('Meters', fontsize=17)
+    plt.title('Mean interval period with standard deviation for every meter', fontsize=22)
     plt.grid(True)
     plt.tight_layout()
     plt.show()
     x = np.arange(len(s)) + 1
     stand=pd.DataFrame({'x_axis': x, 'y_axis': s })
 
-    plt.ylabel('Variance: \u03C3^2')
-    plt.xlabel('Devices')
-    plt.title('Variance of all the detected meters')
+    plt.ylabel('Variance: \u03C3^2',fontsize=17)
+    plt.xlabel('Devices',fontsize=17)
+    plt.title('Variance of all the detected meters',fontsize=22)
     plt.grid(True)
     plt.tight_layout()
     plt.plot( 'x_axis', 'y_axis', data=stand, linestyle='-', marker='o')
@@ -159,12 +156,13 @@ def main():
     i=0
     line1 = []
     line2 = []
-    while i<len(s):
+    while i<=len(s):
         line1.append(.141)
         line2.append(0.02)
         i+=1
-    x1 = range(len(s))
-    x2 = x1
+    x1 = range(len(s)+1)
+    print("x1:",len(x1))
+    print("line1:",len(line1))
     error1=pd.DataFrame({'x': x1, 'y': line1})
     error2=pd.DataFrame({'x': x1, 'y': line2})
     plt.plot( 'x', 'y', data=error1, linestyle='-', color='r')
@@ -197,9 +195,9 @@ def main():
     br4 = np.arange(len(cuatro)+len(seis)+len(siete),len(cuatro)+len(seis)+len(siete)+len(tys))
     width = 0.35
 
-    plt.ylabel('Mean duty cycle (s)')
-    plt.xlabel('Meters')
-    plt.title('Mean interval period')
+    plt.ylabel('Mean duty cycle (s)',fontsize=17)
+    plt.xlabel('Meters',fontsize=17)
+    plt.title('Mean interval period',fontsize=22)
     plt.rcParams['legend.loc'] = 'upper left'
     plt.rcParams['legend.fancybox'] = True
     plt.rcParams['legend.fontsize'] = 'large'
@@ -217,7 +215,7 @@ def main():
           xy=(p.get_x() + p.get_width() / 2, height),
           xytext=(0, 3), # 3 points vertical offset
           textcoords="offset points",
-          ha='center', va='bottom')
+          ha='center', va='bottom', fontsize=10)
 
     pps2=plt.bar(br2-width/2,seis, color = 'b', label='Warm water meter')
     for p in pps2:
@@ -226,7 +224,7 @@ def main():
           xy=(p.get_x() + p.get_width() / 2, height),
           xytext=(0, 3), # 3 points vertical offset
           textcoords="offset points",
-          ha='center', va='bottom')
+          ha='center', va='bottom', fontsize=10)
 
     pps3=plt.bar(br3,siete,color='y', label='Water meter')
     for p in pps3:
@@ -235,7 +233,7 @@ def main():
           xy=(p.get_x() + p.get_width() / 2, height),
           xytext=(0, 3), # 3 points vertical offset
           textcoords="offset points",
-          ha='center', va='bottom')
+          ha='center', va='bottom', fontsize=10)
 
     pps4=plt.bar(br4,tys,color='g',label='Radio converter')
     for p in pps4:
@@ -244,9 +242,9 @@ def main():
           xy=(p.get_x() + p.get_width() / 2, height),
           xytext=(0, 3), # 3 points vertical offset
           textcoords="offset points",
-          ha='center', va='bottom')
+          ha='center', va='bottom', fontsize=10)
 
-    plt.legend(labels=['Heat meters', 'Warm water meter','Water meter','Radio converter'])
+    plt.legend(labels=['Heat meters', 'Warm water meter','Water meter','Radio converter'], fontsize=14)
 
 
 
