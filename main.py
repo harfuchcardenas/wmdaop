@@ -184,17 +184,6 @@ def main():
     siete =     [df_type[11].iloc[2] * 60, df_type[18].iloc[2] * 60, df_type[19].iloc[2] * 60, df_type[20].iloc[2] * 60, df_type[27].iloc[2] * 60, df_type[29].iloc[2] * 60, df_type[31].iloc[2] * 60]
     tys =       [df_type[3].iloc[2] * 60, df_type[9].iloc[2] * 60]
 
-    # cuatro = [ '%.2f' % elem1 for elem1 in cuatro ]
-    #
-    # seis = [ '%.2f' % elem2 for elem2 in seis ]
-    # siete = [ '%.2f' % elem3 for elem3 in siete ]
-    # tys = [ '%.2f' % elem4 for elem4 in tys ]
-
-    # cuatro = list(map(round,cuatro))
-    #
-    # seis = list(map(round,seis))
-    # siete = list(map(round,siete))
-    # tys = list(map(round,tys))
 
     cuatro = np.round(cuatro,2)
     seis = np.round(seis,2)
