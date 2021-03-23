@@ -264,11 +264,10 @@ def main():
     #start date: 1611201603
     #end date:   1612018798
     #          b=1612065603 #One day POSIX from EPOCH
-#     b=1611237603*100 #One hour POSIX from EPOCH
-    1611201603.0
-    1611368138.0
 #     b=1611417603*100
-    b=1611208803*100 # two hours
+    # b=1611208803*100 # two hours
+    # b=1611205203*100 # one hour
+    b=1611202503*100 #15min
     i=1
     j=0
     while i <len(df_mean.columns):
@@ -307,14 +306,9 @@ def main():
             i+=1
         print("salio")
 
-    # for elem in dp:
-        # print("dp:",elem)
     train['Address']=a
     train['TimPo']=dp
-    # print("train.iloc[0:60,0:2]",train.iloc[0:60,0:2])
-    # print("mean:",df_mean)
     pd.options.display.float_format = '{:.5f}'.format
-    # print(",train.iloc[0:60,:] 1:",train.iloc[0:60,:])
     s_train=train.sort_values(['TimPo'], inplace=False, ascending=True)#>>>>>IMPORTANT: This value remains constant through all the meters<<<<<<<<<<<
 
     train.to_csv("train.csv")
@@ -406,263 +400,30 @@ def main():
     for elem in s_train1.index:
         train.at[elem,'C514460170940306']=1
 
-
-    # add=df_mean[17][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514521135840004']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514521135840004']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514521135840004']:",train['C514521135840004'])
-    # # train['C514521135840004'] = train['C514521135840004'].fillna(0)
-    #
-    #
-    # add=df_mean[18][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514950170940307']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514950170940307']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514950170940307']:",train['C514950170940307'])
-    # # train['C514950170940307'] = train['C514950170940307'].fillna(0)
-    #
-    #
-    # add=df_mean[19][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514580450930307']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514580450930307']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514580450930307']:",train['C514580450930307'])
-    # # train['C514580450930307'] = train['C514580450930307'].fillna(0)
-    #
-    #
-    # add=df_mean[20][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514930170940307']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514930170940307']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514930170940307']:",train['C514930170940307'])
-    # # train['C514930170940307'] = train['C514930170940307'].fillna(0)
-    #
-    # add=df_mean[22][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514561135840004']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514561135840004']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514561135840004']:",train['C514561135840004'])
-    # # train['C514561135840004'] = train['C514561135840004'].fillna(0)
-    #
-    #
-    # add=df_mean[23][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514440170940306']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514440170940306']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514440170940306']:",train['C514440170940306'])
-    # # train['C514440170940306'] = train['C514440170940306'].fillna(0)
-    #
-    #
-    # add=df_mean[24][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514581135840004']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514581135840004']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514581135840004']:",train['C514581135840004'])
-    # # train['C514581135840004'] = train['C514581135840004'].fillna(0)
-    #
-    # add=df_mean[25][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514501135840004']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514501135840004']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514501135840004']:",train['C514571135840004'])
-    # # train['C514501135840004'] = train['C514501135840004'].fillna(0)
-    #
-    # add=df_mean[26][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514410170940306']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514410170940306']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514410170940306']:",train['C514410170940306'])
-    # # train['C514410170940306'] = train['C514410170940306'].fillna(0)
-    #
-    #
-    # add=df_mean[27][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514590450930307']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514590450930307']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514590450930307']:",train['C514590450930307'])
-    # # train['C514590450930307'] = train['C514590450930307'].fillna(0)
-    #
-    #
-    # add=df_mean[28][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514717935930004']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514717935930004']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514717935930004']:",train['C514717935930004'])
-    # # train['C514717935930004'] = train['C514717935930004'].fillna(0)
-    #
-    # add=df_mean[29][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514910170940307']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514910170940307']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514910170940307']:",train['C514910170940307'])
-    # # train['C514910170940307'] = train['C514910170940307'].fillna(0)
-    # train.to_csv("train_new1.csv")
-    # add=df_mean[31][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # s_train1.to_csv("s_train1.csv")
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514970170940307']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514970170940307']=1
-    # # print("train.head():",train.head())
-    # # print("train['C514970170940307']:",train['C514970170940307'])
-    # # train['C514970170940307'] = train['C514970170940307'].fillna(0)
-    #
-    # add=df_mean[29][1]
-    # # print("add:",add)
-    # s_train1=train.query('Address==@add')
-    # # print("s_train1.head()",s_train1.head())
-    # # s_train1['@add']=1 #OK
-    # # s_train1.loc[:,'C514203010930306']=1
-    # # print("s_train1:",s_train1)
-    # # print("s_train.index",s_train1.index)
-    # for elem in s_train1.index:
-    #     train.at[elem,'C514203010930306']=1
-    # # print("train.train[:1]:",train[:1])
-    # # print("train['C514203010930306']:",train['C514203010930306'])
-    # # train['C514203010930306'] = train['C514203010930306'].fillna(0)
-    #
-    # # print("train.iloc[900:1000]",train.iloc[900:1000])
-    # # train=train.sort_values(['TimPo'], inplace=False, ascending=True)
-    # # print("train.iloc[900:1000]",train.iloc[900:1000])
-    #
-    # add=df_mean[4][1]
-    # # print("train.query('Address==@add') 1\n",train.query('Address==@add'))
-    # # print("train.query('Address==C514677935930004'):",train.query('Address==C514677935930004'))
-    # train=train.fillna(0)
-    # # print("train.query('Address==@add') 2\n",train.query('Address==@add'))
-    # # df = pd.DataFrame(np.random.randn(1000, 4),index = ts.index, columns = list('ABCD'))
-    #
-    # # x=train['TimPo']
-
-    # for elem in dp:
-        # print("dp:",elem)
-#     train['Address']=a
-#     train['TimPo']=dp
-#     print("train.iloc[0:60,0:2]",train.iloc[0:60,0:2])
-    # print("mean:",df_mean)
     pd.options.display.float_format = '{:.5f}'.format
-    # print(",train.iloc[0:60,:] 1:",train.iloc[0:60,:])
     s_train=train.sort_values(['TimPo'], inplace=False, ascending=True)#>>>>>IMPORTANT: This value remains constant through all the meters<<<<<<<<<<<
-    # print("s_train.iloc[0:60,0:2]",s_train.iloc[0:60,0:2])
-    # print(",train.iloc[0:60,:] 2:",s_train.iloc[0:60,:])
 
-#     add=df_mean[4][1]
-    # print("train.query('Address==@add') 1\n",train.query('Address==@add'))
-    # print("train.query('Address==C514677935930004'):",train.query('Address==C514677935930004'))
-    train=train.fillna(0)
-    # print("train.query('Address==@add') 2\n",train.query('Address==@add'))
-    # df = pd.DataFrame(np.random.randn(1000, 4),index = ts.index, columns = list('ABCD'))
+    s_train=s_train.fillna(0)
 
-    # x=train['TimPo']
-    x=np.linspace(161120160300,161120880300,720000)
+    x=np.linspace(161120160300,161120250300,90001)
 
 #     train.to_csv("train_inside.csv")
 
-    y1=train['C514677935930004']
-    y2=train['AC48941300005037']
-    y3=train['C514611135840004']
-    y4=train['C514707935930004']
-    y5=train['C514551135840004']
-    y6=train['C514531135840004']
-    y7=train['C514667935930004']
-    y8=train['AC48981300005037']
-    y9=train['C514233010930306']
-    y10=train['C514530450930307']
-    y11=train['C514213010930306']
-    y12=train['C514571135840004']
-    y13=train['C514450170940306']
-    y14=train['C514460170940306']
-#     y16=train[['C514440170940306']]
+    y1=s_train['C514677935930004']
+    y2=s_train['AC48941300005037']
+    y3=s_train['C514611135840004']
+    y4=s_train['C514707935930004']
+    y5=s_train['C514551135840004']
+    y6=s_train['C514531135840004']
+    y7=s_train['C514667935930004']
+    y8=s_train['AC48981300005037']
+    y9=s_train['C514233010930306']
+    y10=s_train['C514530450930307']
+    y11=s_train['C514213010930306']
+    # y12=train['C514571135840004']
+    # y13=train['C514450170940306']
+    # y14=train['C514460170940306']
+    # y16=train[['C514440170940306']]
 #     y17=train[['C514581135840004']]
 #     y18=train[['C514501135840004']]
 #     y19=train[['C514410170940306']]
@@ -696,21 +457,21 @@ def main():
     # plt.stem(x[0:300], y23[0:300], '-.')
     # plt.stem(x[0:300], y24[0:300], '-.')
 
-
-    # plt.stem(x.iloc[:1000], y3.iloc[:1000], linefmt='yx')
-    # plt.stem(x.iloc[:1000], y4.iloc[:1000], linefmt='bx')
-    # plt.stem(x.iloc[:1000], y5.iloc[:1000], linefmt='rx')
-
-    plt.stem(x, y1, '-.')
+    color_list = ['C0o','C1o','C2o','C3o','C4o','C5o','C6o','C7o','C8o','C9o','C0x','C1x','C2x']
+    plt.stem(x[0:9000], y1[0:9000], '-.',markerfmt='C0o')
+    plt.stem(x[0:9000], y3[0:9000], '-.',markerfmt='C6o')
+    plt.stem(x[0:9000], y4[0:9000], '-.',markerfmt='C1o')
+    plt.stem(x[0:9000], y5[0:9000], '-.',markerfmt='C9o')
+    plt.stem(x[0:9000], y6[0:9000], '-.',markerfmt='C3o')
     plt.rcParams['legend.loc'] = 'center left'
     plt.rcParams['legend.fancybox'] = True
     plt.rcParams['legend.fontsize'] = 'xx-small'
     plt.rcParams['legend.framealpha'] = None
     plt.rcParams['legend.edgecolor'] = 'inherit'
     plt.title('Sending intervals of the meters',fontsize=22)
-    plt.xlabel('Time [POSIX]',fontsize=17)
+    plt.xlabel('Time [POSIX] ms',fontsize=17)
     plt.ylabel('Logic', fontsize=17)
-    plt.legend(['C514707935930004', 'C514551135840004','C514667935930004','C514450170940306','C514460170940306','C514521135840004','C514930170940307'], fontsize=14)
+    plt.legend(['Meter 1', 'Meter 2','Meter 3','Meter 4','Meter 5'], fontsize=14)
     plt.grid(True)
     plt.show()
 
