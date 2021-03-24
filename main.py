@@ -84,6 +84,7 @@ def main():
 
     df_mean=df_mean.dropna(axis=1)
     df_stadv=df_stadv.dropna(axis=1)
+    del df_type[34]
     tiempos=df_mean[1:]   #Cool! Keep going!
     stdev=df_stadv[1:]
     x=np.arange(len(df_scatter[0])) + 1
@@ -180,7 +181,7 @@ def main():
     barWidth = 0.5
     fig, ax = plt.subplots(figsize =(12, 8))
 
-    cuatro =    [df_type[0].iloc[2] * 60, df_type[1].iloc[2] * 60, df_type[2].iloc[2] * 60, df_type[4].iloc[2] * 60, df_type[5].iloc[2] * 60, df_type[6].iloc[2] * 60, df_type[7].iloc[2] * 60, df_type[8].iloc[2] * 60, df_type[14].iloc[2] * 60, df_type[17].iloc[2] * 60, df_type[22].iloc[2] * 60, df_type[24].iloc[2] * 60, df_type[25].iloc[2] * 60, df_type[28].iloc[2] * 60, df_type[34].iloc[2] * 60]
+    cuatro =    [df_type[0].iloc[2] * 60, df_type[1].iloc[2] * 60, df_type[2].iloc[2] * 60, df_type[4].iloc[2] * 60, df_type[5].iloc[2] * 60, df_type[6].iloc[2] * 60, df_type[7].iloc[2] * 60, df_type[8].iloc[2] * 60, df_type[14].iloc[2] * 60, df_type[17].iloc[2] * 60, df_type[22].iloc[2] * 60, df_type[24].iloc[2] * 60, df_type[25].iloc[2] * 60, df_type[28].iloc[2] * 60]
     seis =      [df_type[15].iloc[2] * 60, df_type[10].iloc[2] * 60, df_type[12].iloc[2] * 60, df_type[15].iloc[2] * 60, df_type[16].iloc[2] * 60, df_type[23].iloc[2] * 60, df_type[26].iloc[2] * 60, df_type[33].iloc[2] * 60]
     siete =     [df_type[11].iloc[2] * 60, df_type[18].iloc[2] * 60, df_type[19].iloc[2] * 60, df_type[20].iloc[2] * 60, df_type[27].iloc[2] * 60, df_type[29].iloc[2] * 60, df_type[31].iloc[2] * 60]
     tys =       [df_type[3].iloc[2] * 60, df_type[9].iloc[2] * 60]
@@ -268,6 +269,7 @@ def main():
     # b=1611208803*100 # two hours
     # b=1611205203*100 # one hour
     b=1611202503*100 #15min
+    # b=161130667600 #
     i=1
     j=0
     while i <len(df_mean.columns):
@@ -405,21 +407,25 @@ def main():
 
     s_train=s_train.fillna(0)
 
-    x=np.linspace(161120160300,161120250300,90001)
+    x=np.linspace(161120160300+129533,161120160300+130533,1001)
 
 #     train.to_csv("train_inside.csv")
-
+    # print("\ntrain[['C514910170940307']]:",train[['C514910170940307']])
     y1=s_train['C514677935930004']
     y2=s_train['AC48941300005037']
     y3=s_train['C514611135840004']
-    y4=s_train['C514707935930004']
-    y5=s_train['C514551135840004']
-    y6=s_train['C514531135840004']
-    y7=s_train['C514667935930004']
+    # y4=s_train['C514707935930004']
+    # y5=s_train['C514551135840004']
+    # y6=s_train['C514531135840004']
+    # y7=s_train['C514667935930004']
     y8=s_train['AC48981300005037']
+    print("y8",y8[y8.iloc[:]==1])
     y9=s_train['C514233010930306']
+    print("y9",y9[y9.iloc[:]==1])
     y10=s_train['C514530450930307']
+    print("y10",y10[y10.iloc[:]==1])
     y11=s_train['C514213010930306']
+    print("y11",y11[y11.iloc[:]==1])
     # y12=train['C514571135840004']
     # y13=train['C514450170940306']
     # y14=train['C514460170940306']
@@ -427,9 +433,9 @@ def main():
 #     y17=train[['C514581135840004']]
 #     y18=train[['C514501135840004']]
 #     y19=train[['C514410170940306']]
-#     y20=train[['C514590450930307']]
+    # y20=train[['C514590450930307']]
 #     y21=train[['C514717935930004']]
-#     y22=train[['C514910170940307']]
+    # y22=train[['C514910170940307']]
 #     y23=train[['C514970170940307']]
 #     y24=train[['C514203010930306']]
 #     print("y4:",y5[y5['C514233010930306']==1])
@@ -458,20 +464,26 @@ def main():
     # plt.stem(x[0:300], y24[0:300], '-.')
 
     color_list = ['C0o','C1o','C2o','C3o','C4o','C5o','C6o','C7o','C8o','C9o','C0x','C1x','C2x']
-    plt.stem(x[0:9000], y1[0:9000], '-.',markerfmt='C0o')
-    plt.stem(x[0:9000], y3[0:9000], '-.',markerfmt='C6o')
-    plt.stem(x[0:9000], y4[0:9000], '-.',markerfmt='C1o')
-    plt.stem(x[0:9000], y5[0:9000], '-.',markerfmt='C9o')
-    plt.stem(x[0:9000], y6[0:9000], '-.',markerfmt='C3o')
+
+    print("len(y1):",len(y1[129533:130534]))
+    print("len(x)",len(x))
+    plt.stem(x, y1[129533:130534], linefmt='C0-.',markerfmt='C0o')
+    plt.stem(x, y3[129533:130534], linefmt='C2-.',markerfmt='C2o')
+    plt.stem(x, y2[129533:130534], linefmt='C1-.',markerfmt='C1o')
+    # plt.stem(x[129533:130533], y8[129533:130533], linefmt='C3-.',markerfmt='C3o')
+    plt.stem(x, y9[129533:130534], linefmt='C4-.',markerfmt='C4o')
+    plt.stem(x, y11[129533:130534], linefmt='C6-.',markerfmt='C6o')
+    plt.stem(x, y10[129533:130534], linefmt='C5-.',markerfmt='C5o')
+    # plt.stem(x[0:80000], y20[0:8000], linefmt='C7-.',markerfmt='C7o')
     plt.rcParams['legend.loc'] = 'center left'
     plt.rcParams['legend.fancybox'] = True
     plt.rcParams['legend.fontsize'] = 'xx-small'
     plt.rcParams['legend.framealpha'] = None
     plt.rcParams['legend.edgecolor'] = 'inherit'
     plt.title('Sending intervals of the meters',fontsize=22)
-    plt.xlabel('Time [POSIX] ms',fontsize=17)
+    plt.xlabel('Time [POSIX] s',fontsize=17)
     plt.ylabel('Logic', fontsize=17)
-    plt.legend(['Meter 1', 'Meter 2','Meter 3','Meter 4','Meter 5'], fontsize=14)
+    plt.legend(['Heat meter 1', 'Radio converter 1','Heat meter 2', 'Radio converter 2','Warm water meter 1','Water meter 1','Warm water meter 2'], fontsize=14)
     plt.grid(True)
     plt.show()
 
