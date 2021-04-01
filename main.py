@@ -94,9 +94,11 @@ def main():
 
     plt.ylabel('Filtered time interval (min)',fontsize=17)
     plt.xlabel('Consecutive ocurrences',fontsize=17)
-    plt.title('Time interval distribution for meter No.0 between consecutive reception of messages from the meters',fontsize=22)
+    plt.title('Time interval distribution for meter No.1 between consecutive reception of messages from the meters',fontsize=22)
     plt.grid(True)
     plt.plot( 'x_axis', 'y_axis', data=stand0, linestyle='-', marker='o')
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
 
     i=0
     line1 = []
@@ -111,6 +113,8 @@ def main():
     error2=pd.DataFrame({'x': x1, 'y': line2})
     plt.plot( 'x', 'y', data=error1, linestyle='-', color='r')
     plt.plot( 'x', 'y', data=error2, linestyle='-', color='r')
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
     plt.rcParams['legend.fancybox'] = True
     plt.rcParams['legend.loc'] = 'upper right'
     plt.rcParams['legend.fontsize'] = 'large'
@@ -141,21 +145,25 @@ def main():
         ecolor='black',
         capsize=15,
         color=(0.2, 0.4, 0.6, 0.6))
-    plt.ylabel('Mean duty cycle (min)', fontsize=17)
-    plt.xlabel('Meters', fontsize=17)
-    plt.title('Mean interval period with standard deviation for every meter', fontsize=22)
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
+    plt.ylabel('Mean duty cycle (min)', fontsize=20)
+    plt.xlabel('Meters', fontsize=20)
+    plt.title('Mean interval period with standard deviation for every meter', fontsize=25)
     plt.grid(True)
     plt.tight_layout()
     plt.show()
     x = np.arange(len(s)) + 1
     stand=pd.DataFrame({'x_axis': x, 'y_axis': s })
 
-    plt.ylabel('Variance: \u03C3^2',fontsize=17)
-    plt.xlabel('Devices',fontsize=17)
-    plt.title('Variance of all the detected meters',fontsize=22)
+    plt.ylabel('Variance: \u03C3^2',fontsize=20)
+    plt.xlabel('Devices',fontsize=20)
+    plt.title('Variance of all the detected meters',fontsize=25)
     plt.grid(True)
 #     plt.tight_layout()
     plt.plot( 'x_axis', 'y_axis', data=stand, linestyle='-', marker='o')
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
 
     i=0
     line1 = []
@@ -182,7 +190,7 @@ def main():
     fig, ax = plt.subplots(figsize =(12, 8))
 
     cuatro =    [df_type[0].iloc[2] * 60, df_type[1].iloc[2] * 60, df_type[2].iloc[2] * 60, df_type[4].iloc[2] * 60, df_type[5].iloc[2] * 60, df_type[6].iloc[2] * 60, df_type[7].iloc[2] * 60, df_type[8].iloc[2] * 60, df_type[14].iloc[2] * 60, df_type[17].iloc[2] * 60, df_type[22].iloc[2] * 60, df_type[24].iloc[2] * 60, df_type[25].iloc[2] * 60, df_type[28].iloc[2] * 60]
-    seis =      [df_type[15].iloc[2] * 60, df_type[10].iloc[2] * 60, df_type[12].iloc[2] * 60, df_type[15].iloc[2] * 60, df_type[16].iloc[2] * 60, df_type[23].iloc[2] * 60, df_type[26].iloc[2] * 60, df_type[33].iloc[2] * 60]
+    seis =      [df_type[15].iloc[2] * 60, df_type[10].iloc[2] * 60, df_type[12].iloc[2] * 60, df_type[16].iloc[2] * 60, df_type[23].iloc[2] * 60, df_type[26].iloc[2] * 60, df_type[33].iloc[2] * 60]
     siete =     [df_type[11].iloc[2] * 60, df_type[18].iloc[2] * 60, df_type[19].iloc[2] * 60, df_type[20].iloc[2] * 60, df_type[27].iloc[2] * 60, df_type[29].iloc[2] * 60, df_type[31].iloc[2] * 60]
     tys =       [df_type[3].iloc[2] * 60, df_type[9].iloc[2] * 60]
 
@@ -194,14 +202,14 @@ def main():
     br1 = np.arange(len(cuatro))
     br1 = br1 + 1
 
-    br2 = np.arange(len(cuatro),len(cuatro)+len(seis))
-    br3 = np.arange(len(cuatro)+len(seis),len(cuatro)+len(seis)+len(siete))
-    br4 = np.arange(len(cuatro)+len(seis)+len(siete),len(cuatro)+len(seis)+len(siete)+len(tys))
+    br2 = np.arange(len(cuatro)+1,len(cuatro)+len(seis)+1)
+    br3 = np.arange(len(cuatro)+len(seis)+1,len(cuatro)+len(seis)+len(siete)+1)
+    br4 = np.arange(len(cuatro)+len(seis)+len(siete)+1,len(cuatro)+len(seis)+len(siete)+len(tys)+1)
     width = 0.35
 
-    plt.ylabel('Mean duty cycle (s)',fontsize=17)
-    plt.xlabel('Meters',fontsize=17)
-    plt.title('Mean interval period',fontsize=22)
+    plt.ylabel('Mean duty cycle (s)',fontsize=20)
+    plt.xlabel('Meters',fontsize=20)
+    plt.title('Mean interval period',fontsize=25)
     plt.rcParams['legend.loc'] = 'upper left'
     plt.rcParams['legend.fancybox'] = True
     plt.rcParams['legend.fontsize'] = 'large'
@@ -247,7 +255,8 @@ def main():
           xytext=(0, 3), # 3 points vertical offset
           textcoords="offset points",
           ha='center', va='bottom', fontsize=10)
-
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
     plt.legend(labels=['Heat meters', 'Warm water meter','Water meter','Radio converter'], fontsize=14)
     plt.show()
 
@@ -475,19 +484,19 @@ def main():
     plt.stem(x, y11[129533:130534], linefmt='C6-.',markerfmt='C6o')
     plt.stem(x, y10[129533:130534], linefmt='C5-.',markerfmt='C5o')
     # plt.stem(x[0:80000], y20[0:8000], linefmt='C7-.',markerfmt='C7o')
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
     plt.rcParams['legend.loc'] = 'center left'
     plt.rcParams['legend.fancybox'] = True
     plt.rcParams['legend.fontsize'] = 'xx-small'
     plt.rcParams['legend.framealpha'] = None
     plt.rcParams['legend.edgecolor'] = 'inherit'
-    plt.title('Sending intervals of the meters',fontsize=22)
-    plt.xlabel('Time [POSIX] s',fontsize=17)
-    plt.ylabel('Logic', fontsize=17)
+    plt.title('Sending intervals of the meters',fontsize=25)
+    plt.xlabel('Time [POSIX] s',fontsize=20)
+    plt.ylabel('Logic', fontsize=20)
     plt.legend(['Heat meter 1', 'Radio converter 1','Heat meter 2', 'Radio converter 2','Warm water meter 1','Water meter 1','Warm water meter 2'], fontsize=14)
     plt.grid(True)
     plt.show()
-
-
 
     # # plot the stem plot using matplotlib
     #
