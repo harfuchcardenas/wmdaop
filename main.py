@@ -1,5 +1,4 @@
 def main():
-    # libraries
     import csv
     import pandas as pd
     import statistics
@@ -11,9 +10,6 @@ def main():
 
     df = pd.read_csv("agustin_thesis.csv",low_memory=False)
     df=df.sort_values(['time'], inplace=False, ascending=True)
-#     print("df:",df)
-#     print("len(df):",len(df))
-#     print("df.shape:",df.columns)
     ADD=[]
     TYPE=[]
     TYPEN=[]
@@ -81,6 +77,18 @@ def main():
                 df_scatter.append(diff)
 
         xx+=1
+    print("df_wake.iloc[0,30]",df_wake.iloc[0,30])
+    print("df_wake.columns",df_wake[29])
+
+    for i in df_wake.columns:
+        print("df_wake.columns",i)
+        print("df_wake",df_wake[i])
+    for i in df_mean.columns:
+        print("df_mean.columns",i)
+        print("df_mean",df_mean[i])
+
+    df_wake.iloc[1,14]=df_wake.iloc[1,5]
+    df_wake.iloc[1,25]=df_wake.iloc[1,1]
 
     df_mean=df_mean.dropna(axis=1)
     df_stadv=df_stadv.dropna(axis=1)
@@ -128,12 +136,10 @@ def main():
     s = []  #Standard Deviation list
     i=0
 
-    # print("type(temporal):",type(temporal))
     while i<len(temporal[0]):
         t.append(temporal[0][i])
         s.append(temporal2[0][i])
         i+=1
-    # print("type(t):",type(t))
     x = np.arange(len(df_mean.columns)) #OK
     x = x+1
     fig = plt.figure()
@@ -160,7 +166,6 @@ def main():
     plt.xlabel('Devices',fontsize=20)
     plt.title('Variance of all the detected meters',fontsize=25)
     plt.grid(True)
-#     plt.tight_layout()
     plt.plot( 'x_axis', 'y_axis', data=stand, linestyle='-', marker='o')
     plt.xticks(fontsize=16)
     plt.yticks(fontsize=16)
@@ -173,8 +178,6 @@ def main():
         line2.append(0.02)
         i+=1
     x1 = range(len(s)+1)
-    # print("x1:",len(x1))
-    # print("line1:",len(line1))
     error1=pd.DataFrame({'x': x1, 'y': line1})
     error2=pd.DataFrame({'x': x1, 'y': line2})
     plt.plot( 'x', 'y', data=error1, linestyle='-', color='r')
@@ -217,8 +220,6 @@ def main():
     plt.rcParams['legend.edgecolor'] = 'inherit'
     plt.grid(True, which='both')
     plt.tight_layout()
-
-    # pps = ax.bar(br1 - width/2, cuatro, width, label='population')
 
     pps = plt.bar(br1-width/2,cuatro, color = 'r', label='Heat meters')
     for p in pps:
@@ -263,22 +264,14 @@ def main():
     df=df.sort_values(['time'], inplace=False, ascending=True)
     dfini=df.head(1)
     dflas=df.tail(1)
-    # print("dfini:",dfini)
-    # print("dflas:",dflas)
     a=dfini['time'].iloc[0]/1e9
 
     train = pd.DataFrame(columns=['Address','TimPo'])
 
     a=[]
     dp=[]
-    #start date: 1611201603
-    #end date:   1612018798
-    #          b=1612065603 #One day POSIX from EPOCH
-#     b=1611417603*100
-    # b=1611208803*100 # two hours
-    # b=1611205203*100 # one hour
-    b=1611202503*100 #15min
-    # b=161130667600 #
+
+    b=1611203003*100 #15min
     i=1
     j=0
     while i <len(df_mean.columns):
@@ -411,79 +404,45 @@ def main():
     for elem in s_train1.index:
         train.at[elem,'C514460170940306']=1
 
+
+    add=df_mean[27][1]
+    s_train1=train.query('Address==@add')
+    for elem in s_train1.index:
+        train.at[elem,'C514590450930307']=1
+
     pd.options.display.float_format = '{:.5f}'.format
     s_train=train.sort_values(['TimPo'], inplace=False, ascending=True)#>>>>>IMPORTANT: This value remains constant through all the meters<<<<<<<<<<<
 
     s_train=s_train.fillna(0)
 
+    for i in s_train.columns:
+        print("s_train['C514450170940306']",i)
     x=np.linspace(161120160300+129533,161120160300+130533,1001)
 
-#     train.to_csv("train_inside.csv")
-    # print("\ntrain[['C514910170940307']]:",train[['C514910170940307']])
     y1=s_train['C514677935930004']
-    y2=s_train['AC48941300005037']
     y3=s_train['C514611135840004']
-    # y4=s_train['C514707935930004']
-    # y5=s_train['C514551135840004']
-    # y6=s_train['C514531135840004']
-    # y7=s_train['C514667935930004']
-    y8=s_train['AC48981300005037']
-    print("y8",y8[y8.iloc[:]==1])
+    y5=s_train['C514551135840004']    #Heat meter
     y9=s_train['C514233010930306']
-    print("y9",y9[y9.iloc[:]==1])
     y10=s_train['C514530450930307']
-    print("y10",y10[y10.iloc[:]==1])
     y11=s_train['C514213010930306']
-    print("y11",y11[y11.iloc[:]==1])
-    # y12=train['C514571135840004']
-    # y13=train['C514450170940306']
-    # y14=train['C514460170940306']
-    # y16=train[['C514440170940306']]
-#     y17=train[['C514581135840004']]
-#     y18=train[['C514501135840004']]
-#     y19=train[['C514410170940306']]
-    # y20=train[['C514590450930307']]
-#     y21=train[['C514717935930004']]
-    # y22=train[['C514910170940307']]
-#     y23=train[['C514970170940307']]
-#     y24=train[['C514203010930306']]
-#     print("y4:",y5[y5['C514233010930306']==1])
-#     plt.stem(x[0:30], y2[0:30], '-.')
-#     plt.stem(x[0:300], y3[0:300], '-.')
-#     plt.stem(x[0:300], y4[0:300], '-.')
-#     # plt.stem(x[0:300], y5[0:300], '-.')
-#     # plt.stem(x[0:300], y6[0:300], '-.')
-#     # plt.stem(x[0:300], y7[0:300], '-.')
-#     # plt.stem(x[0:300], y8[0:300], '-.')
-#     plt.stem(x[0:300], y9[0:300], '-.')
-#     plt.stem(x[0:300], y10[0:300], '-.')
-#     plt.stem(x[0:300], y11[0:300], '-.')
-#     # plt.stem(x[0:300], y12[0:300], '-.')
-#     # plt.stem(x[0:300], y13[0:300], '-.')
-#     plt.stem(x[0:300], y14[0:300], '-.')
-#     plt.stem(x[0:300], y15[0:300], '-.')
-#     plt.stem(x[0:300], y16[0:300], '-.')
-#     plt.stem(x[0:300], y17[0:300], '-.')
-#     plt.stem(x[0:300], y18[0:300], '-.')
-#     # plt.stem(x[0:300], y19[0:300], '-.')
-#     # plt.stem(x[0:300], y20[0:300], '-.')
-#     plt.stem(x[0:300], y21[0:300], '-.')
-#     plt.stem(x[0:300], y22[0:300], '-.')
-    # plt.stem(x[0:300], y23[0:300], '-.')
-    # plt.stem(x[0:300], y24[0:300], '-.')
+    y13=s_train['C514450170940306']
+    y20=s_train[['C514590450930307']]
 
     color_list = ['C0o','C1o','C2o','C3o','C4o','C5o','C6o','C7o','C8o','C9o','C0x','C1x','C2x']
 
     print("len(y1):",len(y1[129533:130534]))
     print("len(x)",len(x))
     plt.stem(x, y1[129533:130534], linefmt='C0-.',markerfmt='C0o')
-    plt.stem(x, y3[129533:130534], linefmt='C2-.',markerfmt='C2o')
-    plt.stem(x, y2[129533:130534], linefmt='C1-.',markerfmt='C1o')
-    # plt.stem(x[129533:130533], y8[129533:130533], linefmt='C3-.',markerfmt='C3o')
-    plt.stem(x, y9[129533:130534], linefmt='C4-.',markerfmt='C4o')
-    plt.stem(x, y11[129533:130534], linefmt='C6-.',markerfmt='C6o')
+    plt.stem(x, y3[129533:130534], linefmt='C1-.',markerfmt='C1o')
+    plt.stem(x, y5[129533:130534], linefmt='C2-.',markerfmt='C2o')
+    plt.stem(x, y9[129533:130534], linefmt='C3-.',markerfmt='C3o')
+    plt.stem(x, y11[129533:130534], linefmt='C4-.',markerfmt='C4o')
+    plt.stem(x, y13[129533:130534], linefmt='C6-.',markerfmt='C6o')
+
     plt.stem(x, y10[129533:130534], linefmt='C5-.',markerfmt='C5o')
-    # plt.stem(x[0:80000], y20[0:8000], linefmt='C7-.',markerfmt='C7o')
+    plt.stem(x, y20[129533:130534], linefmt='C9-.',markerfmt='C9o')
+    plt.xlim([161120160300+129533, 161120160300+129700])
+
     plt.xticks(fontsize=16)
     plt.yticks(fontsize=16)
     plt.rcParams['legend.loc'] = 'center left'
@@ -494,25 +453,12 @@ def main():
     plt.title('Sending intervals of the meters',fontsize=25)
     plt.xlabel('Time [POSIX] s',fontsize=20)
     plt.ylabel('Logic', fontsize=20)
-    plt.legend(['Heat meter 1', 'Radio converter 1','Heat meter 2', 'Radio converter 2','Warm water meter 1','Water meter 1','Warm water meter 2'], fontsize=14)
+    plt.legend(['Heat meter 1', 'Heat meter 2','Heat meter 3','Warm water meter 1','Warm water meter 2','Warm water meter 3','Water meter 1','Water meter 2'], fontsize=14)
     plt.grid(True)
     plt.show()
 
-    # # plot the stem plot using matplotlib
-    #
-    # markerline, stemlines, baseline = plot.stem(stems, marks, '-.')
 
 
-    train.set_index('TimPo')
-    tiem1=train.iloc[:,2]
-    # print("train[:1]:",train[1:])   #OK parece que los "1s" estan en donde deberian estar
-    # tiem1:",tiem1.iloc[:60,3]
-    # print("tiem1",tiem1[5:50])
-    temporal1=train['C514677935930004'].values.tolist()
-    # print("temporal1:",temporal1)
-    # temporal1=temporal1[0:32]
-    print("len(temporal1):",len(temporal1))
-    x1=len(temporal1)
 
 
 
